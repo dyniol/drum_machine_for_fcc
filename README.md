@@ -8,3 +8,7 @@ have fun :)
 - `npm install`
 - `npm start`
 - Visit [http://localhost:8000/](http://localhost:3000/)
+
+## Live preview
+
+https://drum-machine-for-fcc.vercel.app/
