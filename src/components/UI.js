@@ -8,16 +8,17 @@ export default function UI({
   powerState,
   volumeLevel,
   onPowerClick,
- // onBankClick,
+  onBankClick,
   onVolumeChange,
 }) {
+  // Styled components here
 return (
   <>
     <div id="title">
       <div>LISOWSKI</div>
       <div>DRUMMER</div>    
       <div className="title-icon">
-        <FaDrum />
+        <FaDrum onClick={ onBankClick }/>
       </div>
     </div>
     <div id="display">

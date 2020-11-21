@@ -1,22 +1,27 @@
 import React, { useState } from 'react';
 import './App.scss';
-//import components
 import UI from "./components/UI"
 import Sound from './components/Sound';
-//import banks
-import Banks, { bankOne } from './components/Banks'
+import { bankOne, bankTwo } from './components/Banks'
+
+// Typescript wszędzie
+
+const initialState = {
+  current: bankOne,
+};
 
 export default function App(){
   const [display, setDisplay] = useState("POWER ON!");
   const [power, setPower] = useState(true);
   const [volume, setVolume] = useState(35);
- // const [banks, setBank] = useState(true);
+  const [banks, setBank] = useState(initialState);
 
-  // const bankHandler = () => {
-  //   banks === Banks.bankOne
-  //     ? setBank(Banks.bankTwo)
-  //     : setBank(Banks.bankOne);
-  // };
+  const bankHandler = () => {
+    console.log('banks: ', banks );
+    banks === bankOne
+      ? setBank(bankTwo)
+      : setBank(bankOne);
+  };
 
   const displayHandler = (value) => {
     setDisplay(value);
@@ -36,27 +41,25 @@ export default function App(){
       <div id="drum-machine">
         <div id="ui-container">
           <UI
-          display={display}
-         // bankState={banks}
-          powerState={power}
-          volumeLevel={volume}
-         // onBankClick={bankHandler}
-          onPowerClick={powerHandler}
-          onVolumeChange={volumeHandler}
-          />
+            display={display}
+            bankState={banks}
+            powerState={power}
+            volumeLevel={volume}
+            onBankClick={bankHandler}
+            onPowerClick={powerHandler}
+            onVolumeChange={volumeHandler} />
         </div>
         <div id="drum-pads-container">
-          {bankOne.map((item) => (
+          {banks.current.map((item) => (
             <Sound
               key={item.id}
               soundId={item.id}
               keyCode={item.keyCode}
               keyTrigger={item.keyTrigger}
-              soundSrc={item.src}
+              soundSrc={item.url || item.src}
               updateDisplay={displayHandler}
               powerState={power}
-              volumeLevel={volume}
-              />
+              volumeLevel={volume} />
           ))}
         </div>
       </div>

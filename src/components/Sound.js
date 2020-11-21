@@ -21,9 +21,11 @@ export default function Sound({
         sound.currentTime = 0;
         sound.play();
         sound.volume = volumeLevel / 100;
+        // Zmienić nazwę funkcji, wywalić komentarz
         // update display text
         updateDisplay(soundId);
         // apply fade transition
+        // to samo tutaj
         setfadeProp(true);
       }
     };
